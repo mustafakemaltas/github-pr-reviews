@@ -2,6 +2,10 @@
 
 This tool helps in reviewing GitHub PR reviews for a team. It lists PRs by team members and allows reviewing them in a browser.
 
+
+[![Demo]](https://drive.google.com/file/d/1E5S_Rpw5yGHtT3Qnpz2O4T7-oNHRH_NO/view?usp=drive_link)
+
+
 ## Known Issues
 
 - Crashes on mouse click
