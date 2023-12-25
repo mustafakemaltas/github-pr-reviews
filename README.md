@@ -5,6 +5,7 @@ This tool helps in reviewing GitHub PR reviews for a team. It lists PRs by team 
 
 [![Demo]](https://drive.google.com/file/d/1E5S_Rpw5yGHtT3Qnpz2O4T7-oNHRH_NO/view?usp=drive_link)
 
+[![Demo](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Juvenile_Ragdoll.jpg/800px-Juvenile_Ragdoll.jpg)](https://drive.google.com/file/d/1E5S_Rpw5yGHtT3Qnpz2O4T7-oNHRH_NO/view?usp=drive_link)
 
 ## Known Issues
 
