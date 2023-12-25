@@ -21,4 +21,4 @@ pip install .
 
 Once installed, create a `repos.txt` file. Put each repo on a newline.
 
-Then use the `grev` command directly in your terminal.
+Then use the `grevs` command directly in your terminal.
