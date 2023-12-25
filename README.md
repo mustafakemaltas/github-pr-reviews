@@ -1,6 +1,6 @@
-# GitHub PR Reviewer
+# GitHub PR Reviews
 
-This tool helps in reviewing GitHub PRs for a team. It lists PRs by team members and allows opening them in a browser.
+This tool helps in reviewing GitHub PR reviews for a team. It lists PRs by team members and allows reviewing them in a browser.
 
 ## Known Issues
 
@@ -8,20 +8,17 @@ This tool helps in reviewing GitHub PRs for a team. It lists PRs by team members
 - Doesn't support partial styling in choices
 
 
-## Prerequisites
-
-- Python 3 (< 3.10)
-- [GitHub CLI](https://cli.github.com/)
-- PyInquirer: Install using `pip install PyInquirer`
-
 ## Installation
 
-1. Clone or download this repository.
-2. Place the `github-pr-reviewer.py` script in a desired directory.
+Clone or download this repository, then navigate to the root directory of the package and run:
 
-## Usage
+```bash
+pip install .
+```
 
-1. Run the script using Python:
 
-   ```bash
-   python path/to/github-pr-reviewer.py
+### Usage
+
+Once installed, create a `repos.txt` file. Put each repo on a newline.
+
+Then use the `grev` command directly in your terminal.

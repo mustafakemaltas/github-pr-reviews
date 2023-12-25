@@ -1,3 +1,4 @@
+import os
 import json
 import subprocess
 from PyInquirer import prompt, style_from_dict, Token
@@ -14,6 +15,32 @@ custom_style = style_from_dict({
 
 members_cache = {}
 prs_cache = {}
+
+config_file_path = os.path.join(os.path.expanduser('~'), '.githubprreviewerconfig')
+
+
+def initialize_config():
+    """Prompt user for repositories and save to config file."""
+    print("Setting up GitHub PR Reviewer...")
+    questions = [{
+        'type': 'input',
+        'name': 'repos',
+        'message': 'Enter the repository names separated by comma (e.g., user/repo1, user/repo2):',
+    }]
+    answers = prompt(questions)
+    repos = [repo.strip() for repo in answers['repos'].split(',')]
+    with open(config_file_path, 'w') as file:
+        json.dump(repos, file)
+    return repos
+
+
+def read_config():
+    """Read configuration from the config file."""
+    if not os.path.exists(config_file_path):
+        return initialize_config()
+    with open(config_file_path, 'r') as file:
+        return json.load(file)
+
 
 def grevlist(repo):
     """Run the gh pr list command and return the parsed output."""
@@ -77,15 +104,12 @@ def get_member_choices(repos):
 
 
 def main():
+    repos = read_config()
+    if not repos:
+        print("No repositories configured. Exiting.")
+        return
+
     while True:
-        repo_file = 'repos.txt'
-        repos = []
-        try:
-            with open(repo_file, 'r') as file:
-                repos = [line.strip() for line in file if line.strip()]
-        except FileNotFoundError:
-            print(f"Repository file '{repo_file}' not found.")
-            return
         member_choices = get_member_choices(repos=repos)
         member_choices.append({'name': 'Exit', 'value': 'exit'})
 
@@ -106,7 +130,7 @@ def main():
             print("Exiting the application.")
             break
 
-        pr_choices = display_pr_titles(member_answer['team_member'], ['Medsien/medsien-api', 'Medsien/medsien-web', 'Medsien/medsien-ehr-etl'])
+        pr_choices = display_pr_titles(member_answer['team_member'], repos)
         if pr_choices:
             # Temporarily add 'Go Back' option for this display
             display_choices = pr_choices + [{'name': 'Go Back', 'value': 'back'}]
